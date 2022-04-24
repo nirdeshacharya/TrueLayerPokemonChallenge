@@ -21,6 +21,8 @@ namespace TrueLayerChallenge.Tests
 
         private readonly ILogger<PokemonController> logger;
 
+
+        //Mocking is not done because it is a simple service method
         public PokemonControllerTest()
 		{
             _pokemonDetail = new PokemonDetailsService();
@@ -82,9 +84,9 @@ namespace TrueLayerChallenge.Tests
 
 
                 // Assert
-                var actualResult = result.Value.As<PokemonSummary>();
+                var actualResult = result.Value.As<PokemonSummaryModel>();
                 Assert.NotNull(actualResult);
-                result.Value.As<PokemonSummary>().Name.Equals(pokemonName);
+                result.Value.As<PokemonSummaryModel>().Name.Equals(pokemonName);
             }
         }
     }

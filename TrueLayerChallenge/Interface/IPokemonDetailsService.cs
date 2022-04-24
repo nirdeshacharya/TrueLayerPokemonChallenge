@@ -7,6 +7,6 @@ namespace TrueLayerChallenge.Interface
 {
 	public interface IPokemonDetailsService
 	{
-		public Task<PokemonSummary> GetDetails(string name, CancellationToken cancellationToken);
+		public Task<PokemonSummaryModel> GetDetails(string name, CancellationToken cancellationToken);
 	}
 }

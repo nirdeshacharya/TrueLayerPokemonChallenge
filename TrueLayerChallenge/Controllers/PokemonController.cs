@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using TrueLayerChallenge.Models;
 using TrueLayerChallenge.Interface;
 using TrueLayerChallenge.Constants;
+using System.Text.RegularExpressions;
 
 namespace TrueLayerChallenge.Controllers
 {
@@ -28,7 +29,6 @@ namespace TrueLayerChallenge.Controllers
 		public async Task<ActionResult> GetTranslated(string name, CancellationToken cancellationToken)
 		{
 			var summary = await _pokemonDetail.GetDetails(name, cancellationToken);
-
 			if (summary == null)
 				return NotFound();
 
@@ -36,7 +36,7 @@ namespace TrueLayerChallenge.Controllers
 
 			try
 			{
-				var translation = await _pokemonTranslatedDetail.GetTranslatedDetails(summary.Description, translationType, cancellationToken);
+				var translation = await _pokemonTranslatedDetail.GetTranslatedDetails(summary.Description.Replace("\n",String.Empty), translationType, cancellationToken);
 				if (translation != null)
 					summary.Description = translation;
 			}

@@ -14,7 +14,7 @@ namespace TrueLayerChallenge.Services
 {
 	public class PokemonDetailsService : IPokemonDetailsService
 	{
-		public async Task<PokemonSummary> GetDetails(string name, CancellationToken cancellationToken)
+		public async Task<PokemonSummaryModel> GetDetails(string name, CancellationToken cancellationToken)
 		{
 			var context = new HttpClient
 			{
@@ -31,7 +31,7 @@ namespace TrueLayerChallenge.Services
 				if (speciesResponse == null)
 					return null;
 
-				return new PokemonSummary
+				return new PokemonSummaryModel
 				{
 					Name = speciesResponse.name,
 					Description = speciesResponse.flavor_text_entries.First(x => x.language.name == "en").flavor_text,
@@ -42,24 +42,6 @@ namespace TrueLayerChallenge.Services
 				return null;
 
 			throw new HttpRequestException(@$"{request.Method} request to {request.RequestUri} failed with status code {response.StatusCode}.");
-		}
-
-
-		public class SpeciesResponse
-		{
-			public string name { get; set; }
-			public Flavor_Text_Entries[] flavor_text_entries { get; set; }
-		}
-		public class Flavor_Text_Entries
-		{
-			public string flavor_text { get; set; }
-			public Language language { get; set; }
-			public Version version { get; set; }
-		}
-		public class Language
-		{
-			public string name { get; set; }
-			public string url { get; set; }
 		}
 	}
 }
