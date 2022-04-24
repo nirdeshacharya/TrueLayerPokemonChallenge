@@ -38,5 +38,23 @@ namespace TrueLayerChallenge.Tests
             result.StatusCode.Should().Be(200);
         }
 
+        [Fact]
+        public async Task GetTranslated_ShouldReturn404Status()
+        {
+            // Arrange
+            var cts = new CancellationToken();
+            var pokemonName = "random";
+            var loggerFactory = new LoggerFactory();
+            ILogger<PokemonController> logger = loggerFactory.CreateLogger<PokemonController>();
+            var controller = new PokemonController(logger, _pokemonDetail, _pokemonTranslatedDetail);
+
+            // Act
+            var result = (OkObjectResult)await controller.GetTranslated(pokemonName, cts);
+
+
+            // Assert
+            result.StatusCode.Should().Be(404);
+        }
+
     }
 }

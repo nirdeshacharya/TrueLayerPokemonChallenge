@@ -23,5 +23,6 @@
 	<ItemGroup>
 	  <None Remove="Moq" />
 	  <None Remove="xunit.runner.visualstudio" />
+	  <None Remove=".DS_Store" />
 	</ItemGroup>
 </Project>
