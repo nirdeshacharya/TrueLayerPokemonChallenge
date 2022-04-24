@@ -1,5 +1,5 @@
 # TrueLayerPokemonChallenge
-Coding Challenge repo by TrueLayer
+Coding Challenge repo - TrueLayer
 
 
 ## How to run
